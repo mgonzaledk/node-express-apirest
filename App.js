@@ -1,7 +1,10 @@
 var express = require('express')
 var http = require('http')
 var https = require('https')
+
 var logger = require('morgan')
+var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
 
 var path = require('path')
 
@@ -13,6 +16,16 @@ app.set('view engine', 'ejs')
 
 // Configurar logger.
 app.use(logger('dev'))
+
+// Configurar body parser.
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// Configurar cookie parser.
+app.use(cookieParser())
+
+// Configurar directorio estático.
+app.use(express.static(path.join(__dirname, 'Public')))
 
 // Error 404.
 app.use((request, response, next) => {
