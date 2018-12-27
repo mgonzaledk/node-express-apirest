@@ -1,4 +1,5 @@
 var express = require('express')
+var helmet = require('helmet')
 var http = require('http')
 var https = require('https')
 
@@ -13,6 +14,9 @@ var app = express()
 // Configurar vistas.
 app.set('views', path.join(__dirname, 'Views'))
 app.set('view engine', 'ejs')
+
+// Configurar helmet para establecer protecciones HTTP.
+app.use(helmet())
 
 // Configurar logger.
 app.use(logger('dev'))
