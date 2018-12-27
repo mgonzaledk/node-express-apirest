@@ -1,6 +1,7 @@
 var express = require('express')
 var http = require('http')
 var https = require('https')
+var logger = require('morgan')
 
 var path = require('path')
 
@@ -9,6 +10,9 @@ var app = express()
 // Configurar vistas.
 app.set('views', path.join(__dirname, 'Views'))
 app.set('view engine', 'ejs')
+
+// Configurar logger.
+app.use(logger('dev'))
 
 // Error 404.
 app.use((request, response, next) => {
