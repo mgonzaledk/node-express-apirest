@@ -12,7 +12,7 @@ var path = require('path')
 var app = express()
 
 // Configurar vistas.
-app.set('views', path.join(__dirname, 'Views'))
+app.set('views', path.join(__dirname, 'View'))
 app.set('view engine', 'ejs')
 
 // Configurar helmet para establecer protecciones HTTP.
@@ -30,6 +30,24 @@ app.use(cookieParser())
 
 // Configurar directorio estático.
 app.use(express.static(path.join(__dirname, 'Public')))
+
+// Establecer variables globales para las rutas.
+app.use((request, resource, next) => {
+    global.VIEWS_PATH = path.join(__dirname, 'View')
+    next()
+})
+
+/*
+ * ============================================================================
+ * RUTAS
+ * ============================================================================
+*/
+
+app.use('/', require('./Route/Main'))
+
+/*
+ * ============================================================================
+*/
 
 // Error 404.
 app.use((request, response, next) => {
