@@ -28,7 +28,7 @@ class Database {
     }
 }
 
-Database.execute = function(config, callback) {
+Database.execute = function (config, callback) {
     const database = new Database(config)
 
     return callback(database).then(
