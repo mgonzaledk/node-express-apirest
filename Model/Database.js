@@ -19,7 +19,7 @@ class Database {
 
     close() {
         return new Promise((resolve, reject) => {
-            this.connection.end( err => {
+            this.connection.end( error => {
                 if (error) {
                     return reject(error)
                 }
