@@ -12,18 +12,20 @@ class Database {
                     return reject(error)
                 }
 
-                resolve(rows)
+                return resolve(rows)
             })
         })
     }
 
     close() {
         return new Promise((resolve, reject) => {
-            if (error) {
-                return reject(error)
-            }
+            this.connection.end( err => {
+                if (error) {
+                    return reject(error)
+                }
 
-            resolve()
+                return resolve()
+            })
         })
     }
 }
