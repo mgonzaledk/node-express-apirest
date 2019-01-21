@@ -3,7 +3,7 @@ var key = require('../Config/Key')
 
 function GetToken(request) {
     if(request.headers.authorization) {
-        const split = req.headers.authorization.split(' ')
+        const split = request.headers.authorization.split(' ')
 
         if(split[0] === 'Token' || split[0] === 'Bearer') {
             return split[1]
